@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Preços Atuais</h2>
+<ul>
+  {% for produto, preco in precos.items() %}
+  <li>{{ produto.capitalize() }}: R$ {{ preco }}</li>
+  {% endfor %}
+</ul>
+
+<h2>Registrar Produção</h2>
+<form method="POST">
+  <label>Produto:</label>
+  <input name="produto" required>
+  <label>Quantidade (ton.):</label>
+  <input name="quantidade" type="number" step="0.01" required>
+  <button type="submit">Adicionar</button>
+</form>
+
+<h2>Histórico de Produção</h2>
+<table>
+  <tr><th>Produto</th><th>Quantidade</th></tr>
+  {% for item in historico %}
+  <tr><td>{{ item.produto }}</td><td>{{ item.quantidade }}</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
